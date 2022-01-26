@@ -10,7 +10,6 @@
 }
 
 .generatedImg h1{
-    font-size: 200%;
     margin: 1;
 }
 .generatedImg h3{
@@ -37,13 +36,8 @@
     backdrop-filter: blur(5px);
 
     max-width: 450px;
-    margin: 1px;;
-    padding: 1px;
 
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 
 .h3blur{
@@ -61,9 +55,6 @@
 
 
     position: absolute;
-    bottom: 25%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 
 .otherblur{
@@ -82,7 +73,29 @@
 
 
     position: absolute;
-    bottom: 8px;
-    left: 50%;
-    transform: translate(-50%, -50%);
+}
+
+
+
+
+#mydiv {
+    position: absolute; 
+}
+  
+#mydivheader{
+    padding: 5px;
+    cursor: move;
+    z-index: 10;
+}
+
+#mydiv2header{
+    padding: 5px;
+    cursor: move;
+    z-index: 10;
+}
+
+#mydiv3header{
+    padding: 5px;
+    cursor: move;
+    z-index: 10;
 }
