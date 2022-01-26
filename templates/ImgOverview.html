@@ -1,0 +1,75 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='Stylesheet/style.css') }}">
+    <script src="script.js"></script>
+
+    <title>Generated Img</title>
+</head>
+<body>
+    <h1>AI Generated IMG</h1>
+
+    <form id="EventInfoFrm" onsubmit="return false;">
+        <br>
+        <label for="NameOfEvent">Name of the event?</label><br>
+        <input type="text" id="NameOfEvent" name="NameOfEvent"><br>
+
+        <br>
+        <label for="DateOfEvent">Date of the event</label><br>
+        <input type="datetime-local" id="DateOfEvent" name="DateOfEvent" ><br>
+
+        <br>
+        <textarea id="OtherInfo" rows="4" cols="50" name="comment" form="EventInfoFrm" placeholder="Enter all other info here"></textarea><br>
+
+        <br>
+        <input  type="submit" onclick="AddTextToImg();" />
+    </form>
+
+    <div id="generatedimg" class="generatedImg container">
+        <!-- setting background in CSS -->
+        <!-- <img src="{{url_for('static', filename='progress.png')}}"/> -->
+
+        <div class="h1blur">
+            <h1  id="NameOfEventOnImg"></h1>
+        </div>
+    
+        <div class="h3blur">
+            <h3 id="DateOfEventOnImg"></h3>
+        </div>
+
+        <div class="otherblur">
+            <p id="OtherInfoOnImg"></p><br>
+        </div>
+    </div>
+
+    <div id="editor"></div>
+    <button onclick="doCapture()">save div as pdf</button>
+
+    <script>
+        function AddTextToImg() {
+            var NameOfEvent = document.getElementById("NameOfEvent").value;
+            var DateOfEvent = document.getElementById("DateOfEvent").value;
+            var OtherInfo = document.getElementById("OtherInfo").value;
+            
+            document.getElementById("NameOfEventOnImg").innerHTML = NameOfEvent;
+            document.getElementById("DateOfEventOnImg").innerHTML = DateOfEvent;
+            document.getElementById("OtherInfoOnImg").innerHTML = OtherInfo;
+        }
+    </script>
+
+
+    <script src="{{ url_for('static', filename='script/html2canvas.js') }}"></script>
+    <script>
+        function doCapture() {
+            html2canvas(document.getElementById("generatedimg")).then(function (canvas){console.log(canvas.toDataURL("image/jpg"),0.99);
+        });
+        }
+    </script>
+
+    
+
+    
+</body>
+</html>

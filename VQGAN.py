@@ -190,7 +190,7 @@ def run_model(input_text):
     initial_image = ""
     objective_image = ""
     seed = -1
-    max_iterations = -1
+    max_iterations = 50
     input_images = ""
 
     nombres_modelos={"vqgan_imagenet_f16_16384": 'ImageNet 16384'}
@@ -341,10 +341,10 @@ def run_model(input_text):
         losses_str = ', '.join(f'{loss.item():g}' for loss in losses)
         print(f'i: {i}, loss: {sum(losses).item():g}, losses: {losses_str}')
         out = synth(z)
-        TF.to_pil_image(out[0].cpu()).save('progress.png')
-        add_stegano_data('progress.png')
+        TF.to_pil_image(out[0].cpu()).save('static/progress.png')
+        add_stegano_data('static/progress.png')
         # add_xmp_data('progress.png')
-        display.display(display.Image('progress.png'))
+        # display.display(display.Image('progress.png'))
 
     def ascend_txt():
         global i

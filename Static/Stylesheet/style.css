@@ -1,0 +1,88 @@
+.generatedImg{
+    background-image: url("../progress.png");
+    background-repeat: no-repeat;
+
+    /* center div */
+    margin: auto;
+
+    width: 500px;
+    height: 500px;
+}
+
+.generatedImg h1{
+    font-size: 200%;
+    margin: 1;
+}
+.generatedImg h3{
+    margin: 1;
+}
+.generatedImg p{
+    margin: 1;
+}
+
+.container {
+    position: relative;
+    text-align: center;
+}
+  
+.h1blur{
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+
+    font-family: sans-serif;
+
+    text-align: center;
+
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+
+    max-width: 450px;
+    margin: 1px;;
+    padding: 1px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.h3blur{
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+
+    font-family: sans-serif;
+
+    text-align: center;
+
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+
+    max-width: 450px;
+
+
+    position: absolute;
+    bottom: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.otherblur{
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+
+    font-family: sans-serif;
+
+    text-align: center;
+
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+
+    max-width: 450px;
+    padding: 0;
+
+
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
