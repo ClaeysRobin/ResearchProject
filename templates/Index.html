@@ -10,12 +10,12 @@
 
     <form id="form" onsubmit="return false;">
         <input  type="text" id="userInput" />
-        <input  type="submit" onclick="othername();" />
+        <input  type="submit" onclick="generateimg();" />
     </form>
     
     <!-- Script to start generating an img -->
     <script>
-        function othername() {
+        function generateimg() {
             var input = document.getElementById("userInput").value;
             let isConfirm = confirm("Are you sure to generated the following img: " + input)
             if (isConfirm){
@@ -23,8 +23,5 @@
             }
         }
     </script>
-
-
-    <a href="/runscript/a dream world">Continue</a>
 </body>
 </html>
