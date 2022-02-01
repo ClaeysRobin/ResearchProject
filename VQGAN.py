@@ -20,10 +20,7 @@ from CLIP import clip
 import kornia.augmentation as K
 import numpy as np
 import imageio
-from PIL import ImageFile, Image
-# from imgtag import ImgTag    
-# from libxmp import *      
-# import libxmp                
+from PIL import ImageFile, Image             
 from stegano import lsb
 import json
 ImageFile.LOAD_TRUNCATED_IMAGES = True
@@ -193,8 +190,8 @@ def run_model(input_text):
     max_iterations = 50
     input_images = ""
 
-    nombres_modelos={"vqgan_imagenet_f16_16384": 'ImageNet 16384'}
-    nombre_modelo = nombres_modelos[model]     
+    models={"vqgan_imagenet_f16_16384": 'ImageNet 16384'}
+    usemodel = models[model]     
 
     if model == "gumbel_8192":
         is_gumbel = True
@@ -310,27 +307,13 @@ def run_model(input_text):
         
         return clamp_with_grad(model.decode(z_q).add(1).div(2), 0, 1)
 
-    # def add_xmp_data(nombrefichero):
-        imagen = ImgTag(filename=nombrefichero)
-        imagen.xmp.append_array_item(libxmp.consts.XMP_NS_DC, 'creator', 'VQGAN+CLIP', {"prop_array_is_ordered":True, "prop_value_is_array":True})
-        if args.prompts:
-            imagen.xmp.append_array_item(libxmp.consts.XMP_NS_DC, 'title', " | ".join(args.prompts), {"prop_array_is_ordered":True, "prop_value_is_array":True})
-        else:
-            imagen.xmp.append_array_item(libxmp.consts.XMP_NS_DC, 'title', 'None', {"prop_array_is_ordered":True, "prop_value_is_array":True})
-        imagen.xmp.append_array_item(libxmp.consts.XMP_NS_DC, 'i', str(i), {"prop_array_is_ordered":True, "prop_value_is_array":True})
-        imagen.xmp.append_array_item(libxmp.consts.XMP_NS_DC, 'model', nombre_modelo, {"prop_array_is_ordered":True, "prop_value_is_array":True})
-        imagen.xmp.append_array_item(libxmp.consts.XMP_NS_DC, 'seed',str(seed) , {"prop_array_is_ordered":True, "prop_value_is_array":True})
-        imagen.xmp.append_array_item(libxmp.consts.XMP_NS_DC, 'input_images',str(input_images) , {"prop_array_is_ordered":True, "prop_value_is_array":True})
-        #for frases in args.prompts:
-        #    imagen.xmp.append_array_item(libxmp.consts.XMP_NS_DC, 'Prompt' ,frases, {"prop_array_is_ordered":True, "prop_value_is_array":True})
-        imagen.close()
 
     def add_stegano_data(filename):
         data = {
             "title": " | ".join(args.prompts) if args.prompts else None,
             "notebook": "VQGAN+CLIP",
             "i": i,
-            "model": nombre_modelo,
+            "model": usemodel,
             "seed": str(seed),
             "input_images": input_images
         }
@@ -343,8 +326,7 @@ def run_model(input_text):
         out = synth(z)
         TF.to_pil_image(out[0].cpu()).save('static/progress.png')
         add_stegano_data('static/progress.png')
-        # add_xmp_data('progress.png')
-        # display.display(display.Image('progress.png'))
+
 
     def ascend_txt():
         global i
@@ -363,7 +345,6 @@ def run_model(input_text):
         filename = f"steps/{i:04}.png"
         imageio.imwrite(filename, np.array(img))
         add_stegano_data(filename)
-        # add_xmp_data(filename)
         return result
 
     def train(i):
